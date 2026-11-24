@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="bar">#1b2027</color>
+    <color name="page">#12151a</color>
+    <bool name="light_bars">false</bool>
+</resources>

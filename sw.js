@@ -1,6 +1,6 @@
 // Offline support: everything the app needs is cached on first load.
 // Only active on https:// or localhost (browsers do not allow service workers on plain http).
-const CACHE = "python-practice-v2";
+const CACHE = "python-practice-v3";
 const FILES = [
   "./", "index.html", "app.js", "py-worker.js", "harness.py", "exercises.json",
   "manifest.webmanifest", "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png", "vendor/anthropic.js",

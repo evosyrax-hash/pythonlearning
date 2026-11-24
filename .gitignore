@@ -1,2 +1,9 @@
 .claude/
 __pycache__/
+
+# Android build
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/app/src/main/assets/www/

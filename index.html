@@ -14,14 +14,14 @@
 :root {
   --bg: #f6f7f9; --card: #ffffff; --text: #1c2128; --muted: #667085; --line: #dfe3e8;
   --accent: #1f6feb; --accent-text: #ffffff; --ok: #1a7f37; --ok-bg: #e6f6ea;
-  --bad: #b42318; --bad-bg: #fdecea; --code-bg: #f0f2f5; --editor-bg: #ffffff;
+  --bad: #b42318; --bad-bg: #fdecea; --warn: #8a5a00; --warn-bg: #fdf1d3; --code-bg: #f0f2f5; --editor-bg: #ffffff;
   --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
 }
 @media (prefers-color-scheme: dark) {
   :root {
     --bg: #12151a; --card: #1b2027; --text: #e6e9ee; --muted: #9aa4b2; --line: #2e353f;
     --accent: #4c8dff; --accent-text: #0b1220; --ok: #56d364; --ok-bg: #12301b;
-    --bad: #ff8b82; --bad-bg: #3a1614; --code-bg: #242a33; --editor-bg: #161a20;
+    --bad: #ff8b82; --bad-bg: #3a1614; --warn: #f0c36a; --warn-bg: #3a2c0c; --code-bg: #242a33; --editor-bg: #161a20;
   }
 }
 * { box-sizing: border-box; }
@@ -52,6 +52,9 @@ main { max-width: 760px; margin: 0 auto; padding: 14px 12px calc(40px + env(safe
 .item.done .dot { background: var(--ok); border-color: var(--ok); color: var(--card); }
 .item span.name { flex: 1; }
 .item .chev { color: var(--muted); }
+.lvl { flex: none; padding: 1px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.lvl.l2 { background: var(--warn-bg); color: var(--warn); }
+.lvl.l3 { background: var(--bad-bg); color: var(--bad); }
 
 .prose p { margin: 0 0 10px; }
 .prose ul, .prose ol { margin: 0 0 10px; padding-left: 22px; }

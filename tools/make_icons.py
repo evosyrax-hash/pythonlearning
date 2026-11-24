@@ -29,3 +29,10 @@ for name, size, rounded in [("icon-192.png", 192, True), ("icon-512.png", 512, T
                             ("icon-maskable-512.png", 512, False), ("apple-touch-icon.png", 180, False)]:
     draw(rounded).resize((size, size), Image.LANCZOS).save(ROOT / name)
     print("wrote", name)
+
+# Android launcher icons for the APK
+for density, size in [("mdpi", 48), ("hdpi", 72), ("xhdpi", 96), ("xxhdpi", 144), ("xxxhdpi", 192)]:
+    folder = ROOT / "android" / "app" / "src" / "main" / "res" / f"mipmap-{density}"
+    folder.mkdir(parents=True, exist_ok=True)
+    draw(True).resize((size, size), Image.LANCZOS).save(folder / "ic_launcher.png")
+print("wrote android launcher icons")

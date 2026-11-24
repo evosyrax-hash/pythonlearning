@@ -9,6 +9,21 @@ sys.path.insert(0, str(ROOT / "tools"))
 
 from harness import _pl_run  # noqa: E402
 from exercises_src import EXERCISES  # noqa: E402
+import exercises_more  # noqa: E402,F401  (adds to EXERCISES)
+
+# Order of the sections in the app. Inside a section: easy first, then the order written.
+TOPICS = ["Basics", "Strings", "Conditions", "Loops", "Lists", "Functions", "Dictionaries", "Tuples & sets",
+          "Comprehensions", "Errors", "Classes", "Recursion", "Grids", "Logic puzzles", "Challenges"]
+# Levels for the first batch, which was written before levels existed.
+LEVELS = {"count-vowels": 2, "leap-year": 2, "fizzbuzz": 2, "second-largest": 2, "palindrome": 2, "fibonacci": 2,
+          "word-count": 2, "most-expensive": 2, "long-words": 2, "to-int": 2, "bank-account": 2,
+          "is-prime": 2, "anagrams": 2, "caesar": 3}
+for e in EXERCISES:
+    e["level"] = LEVELS.get(e["id"], e["level"])
+unknown = {e["topic"] for e in EXERCISES} - set(TOPICS)
+if unknown:
+    sys.exit(f"Add these topics to TOPICS in build_exercises.py: {unknown}")
+EXERCISES.sort(key=lambda e: (TOPICS.index(e["topic"]), e["level"]))
 
 problems = []
 seen = set()

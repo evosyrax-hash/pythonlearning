@@ -113,6 +113,11 @@ function renderProgress() {
   $("progress").textContent = `${count} / ${exercises.length}`;
 }
 
+const LEVEL_NAMES = { 2: "Medium", 3: "Hard" };
+function levelBadge(e) {
+  return LEVEL_NAMES[e.level] ? `<span class="lvl l${e.level}">${LEVEL_NAMES[e.level]}</span>` : "";
+}
+
 function renderHome() {
   const topics = [];
   for (const e of exercises) {
@@ -124,7 +129,7 @@ function renderHome() {
     <div class="topic"><span>${esc(t.name)}</span><span>${t.items.filter((e) => done[e.id]).length}/${t.items.length}</span></div>
     <div class="list">${t.items.map((e) => `
       <button class="item${done[e.id] ? " done" : ""}" data-id="${esc(e.id)}">
-        <span class="dot">&#10003;</span><span class="name">${esc(e.title)}</span><span class="chev">&#8250;</span>
+        <span class="dot">&#10003;</span><span class="name">${esc(e.title)}</span>${levelBadge(e)}<span class="chev">&#8250;</span>
       </button>`).join("")}
     </div>`).join("");
 }
@@ -163,7 +168,7 @@ function showExercise(ex) {
   resetTutor();
   clearFeedback();
   $("title").textContent = ex.title;
-  $("ex-text").innerHTML = md(ex.text);
+  $("ex-text").innerHTML = (LEVEL_NAMES[ex.level] ? `<p>${levelBadge(ex)}</p>` : "") + md(ex.text);
   codeEl.value = store.get("code." + ex.id, ex.starter);
   const index = exercises.indexOf(ex);
   $("next").hidden = index === exercises.length - 1;

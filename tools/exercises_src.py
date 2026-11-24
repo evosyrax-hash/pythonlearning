@@ -8,8 +8,9 @@ everything the code printed. Assertion messages are shown to the learner.
 EXERCISES = []
 
 
-def ex(id, topic, title, text, starter, tests, solution, stdin=""):
-    EXERCISES.append(dict(id=id, topic=topic, title=title, text=text.strip(),
+def ex(id, topic, title, text, starter, tests, solution, stdin="", level=1):
+    """level: 1 = easy, 2 = medium, 3 = hard"""
+    EXERCISES.append(dict(id=id, topic=topic, title=title, level=level, text=text.strip(),
                           starter=starter.strip("\n") + "\n", tests=tests.strip(),
                           solution=solution.strip("\n") + "\n", stdin=stdin))
 
