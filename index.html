@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f6feb">
+<title>Python Practice</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Python">
+<style>
+:root {
+  --bg: #f6f7f9; --card: #ffffff; --text: #1c2128; --muted: #667085; --line: #dfe3e8;
+  --accent: #1f6feb; --accent-text: #ffffff; --ok: #1a7f37; --ok-bg: #e6f6ea;
+  --bad: #b42318; --bad-bg: #fdecea; --code-bg: #f0f2f5; --editor-bg: #ffffff;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", "Roboto Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151a; --card: #1b2027; --text: #e6e9ee; --muted: #9aa4b2; --line: #2e353f;
+    --accent: #4c8dff; --accent-text: #0b1220; --ok: #56d364; --ok-bg: #12301b;
+    --bad: #ff8b82; --bad-bg: #3a1614; --code-bg: #242a33; --editor-bg: #161a20;
+  }
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.5 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 8px;
+  padding: calc(8px + env(safe-area-inset-top)) 12px 8px; background: var(--card); border-bottom: 1px solid var(--line); }
+header h1 { flex: 1; margin: 0; font-size: 17px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#progress { color: var(--muted); font-size: 14px; white-space: nowrap; }
+.icon-btn { width: 40px; height: 40px; border: 0; border-radius: 10px; background: transparent; font-size: 22px; line-height: 1; }
+.icon-btn:active { background: var(--code-bg); }
+
+main { max-width: 760px; margin: 0 auto; padding: 14px 12px calc(40px + env(safe-area-inset-bottom)); }
+[hidden] { display: none !important; }
+
+.topic { margin: 18px 4px 8px; display: flex; justify-content: space-between; font-size: 13px; font-weight: 600;
+  letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+.topic:first-child { margin-top: 4px; }
+.list { background: var(--card); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; }
+.item { display: flex; align-items: center; gap: 12px; width: 100%; min-height: 50px; padding: 10px 14px; border: 0;
+  border-top: 1px solid var(--line); background: none; text-align: left; }
+.item:first-child { border-top: 0; }
+.item:active { background: var(--code-bg); }
+.dot { flex: none; width: 22px; height: 22px; border-radius: 50%; border: 2px solid var(--line); display: grid; place-items: center; font-size: 13px; color: transparent; }
+.item.done .dot { background: var(--ok); border-color: var(--ok); color: var(--card); }
+.item span.name { flex: 1; }
+.item .chev { color: var(--muted); }
+
+.prose p { margin: 0 0 10px; }
+.prose ul, .prose ol { margin: 0 0 10px; padding-left: 22px; }
+.prose h4 { margin: 14px 0 6px; font-size: 16px; }
+.prose code { font-family: var(--mono); font-size: .9em; background: var(--code-bg); padding: 1px 5px; border-radius: 5px; }
+.prose pre { margin: 0 0 10px; padding: 10px 12px; background: var(--code-bg); border-radius: 10px; overflow-x: auto; }
+.prose pre code { padding: 0; background: none; font-size: 14px; line-height: 1.45; }
+
+.editor { margin-top: 6px; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; background: var(--editor-bg); }
+.editor:focus-within { border-color: var(--accent); }
+.code-row { display: flex; align-items: stretch; }
+#gutter { flex: none; margin: 0; padding: 10px 8px 10px 10px; min-width: 38px; text-align: right; color: var(--muted);
+  font: 15px/1.5 var(--mono); user-select: none; border-right: 1px solid var(--line); white-space: pre; }
+#code { flex: 1; min-width: 0; display: block; margin: 0; padding: 10px; border: 0; outline: 0; resize: none; background: transparent;
+  font: 15px/1.5 var(--mono); white-space: pre; overflow-x: auto; overflow-y: hidden; tab-size: 4; min-height: 150px; }
+@supports (-webkit-touch-callout: none) { #code, #gutter { font-size: 16px; } } /* iOS zooms inputs under 16px */
+#keys { display: flex; gap: 6px; padding: 6px; overflow-x: auto; border-top: 1px solid var(--line); background: var(--card); scrollbar-width: none; }
+#keys::-webkit-scrollbar { display: none; }
+#keys button { flex: none; min-width: 40px; height: 36px; padding: 0 8px; border: 1px solid var(--line); border-radius: 8px;
+  background: var(--bg); font: 16px var(--mono); touch-action: manipulation; }
+#keys button:active { background: var(--code-bg); }
+
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+.btn { min-height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--card); font-weight: 600; touch-action: manipulation; }
+.btn:active { filter: brightness(.94); }
+.btn:disabled { opacity: .55; cursor: default; }
+.btn.primary { flex: 1; min-width: 90px; background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+.btn.quiet { border-color: transparent; background: none; color: var(--muted); font-weight: 500; }
+.btn.wide { width: 100%; margin-top: 14px; }
+
+#result { padding: 10px 14px; border-radius: 10px; font-weight: 600; margin-bottom: 10px; overflow-wrap: anywhere; }
+#result.ok { background: var(--ok-bg); color: var(--ok); }
+#result.bad { background: var(--bad-bg); color: var(--bad); }
+#result.info { background: var(--code-bg); color: var(--muted); font-weight: 500; }
+#result small { display: block; font-weight: 400; margin-top: 2px; color: inherit; }
+.label { margin: 12px 4px 4px; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+#output { margin: 0; padding: 10px 12px; background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+  font: 14px/1.45 var(--mono); white-space: pre-wrap; overflow-wrap: anywhere; max-height: 320px; overflow-y: auto; }
+#output .err { color: var(--bad); }
+#output .none { color: var(--muted); font-family: system-ui, sans-serif; }
+
+#tutor { margin-top: 16px; padding: 12px 14px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 12px; }
+#tutor .who { font-size: 12px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+#tutor .me { margin: 12px 0 8px; padding: 8px 12px; background: var(--code-bg); border-radius: 10px; }
+#tutor .problem { color: var(--bad); }
+#tutor .wait { color: var(--muted); }
+#ask { display: flex; gap: 8px; margin-top: 10px; }
+#ask input { flex: 1; min-width: 0; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+
+dialog { width: min(92vw, 440px); padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); color: var(--text); }
+dialog::backdrop { background: rgba(0, 0, 0, .45); }
+dialog h2 { margin: 0 0 4px; font-size: 18px; }
+dialog p { margin: 0 0 12px; color: var(--muted); font-size: 14px; }
+dialog label { display: block; margin: 12px 0 4px; font-size: 14px; font-weight: 600; }
+dialog input, dialog select { width: 100%; height: 44px; padding: 0 12px; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+dialog .row { display: flex; gap: 8px; margin-top: 18px; }
+dialog .row .btn { flex: 1; }
+#settings-note { color: var(--bad); }
+</style>
+</head>
+<body>
+<header>
+  <button id="back" class="icon-btn" aria-label="Back to all exercises" hidden>&#8249;</button>
+  <h1 id="title">Python Practice</h1>
+  <span id="progress"></span>
+  <button id="gear" class="icon-btn" aria-label="Settings">&#9881;</button>
+</header>
+
+<main>
+  <section id="home"></section>
+
+  <section id="exercise" hidden>
+    <div id="ex-text" class="prose"></div>
+
+    <div class="editor">
+      <div class="code-row">
+        <pre id="gutter" aria-hidden="true">1</pre>
+        <textarea id="code" aria-label="Your Python code" spellcheck="false" autocapitalize="off" autocomplete="off" autocorrect="off" wrap="off"></textarea>
+      </div>
+      <div id="keys" aria-label="Code symbols"></div>
+    </div>
+
+    <div class="actions">
+      <button id="run" class="btn primary">&#9654; Run</button>
+      <button id="hint" class="btn">Hint</button>
+      <button id="explain" class="btn">Explain</button>
+      <button id="reset" class="btn quiet">Reset</button>
+    </div>
+
+    <div id="result" role="status" hidden></div>
+    <div id="output-wrap" hidden>
+      <div class="label">Output</div>
+      <pre id="output"></pre>
+    </div>
+
+    <div id="tutor" hidden>
+      <div id="tutor-body" class="prose"></div>
+      <form id="ask" hidden>
+        <input id="question" aria-label="Ask Claude a follow-up question" placeholder="Ask a follow-up question" autocomplete="off">
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+
+    <button id="next" class="btn wide">Next exercise &#8594;</button>
+  </section>
+</main>
+
+<dialog id="settings">
+  <form method="dialog" id="settings-form">
+    <h2>Settings</h2>
+    <p id="settings-note" hidden></p>
+    <p>Hint and Explain use the Claude API. The key is saved only in this browser on this device.</p>
+    <label for="api-key">Claude API key</label>
+    <input id="api-key" type="password" placeholder="sk-ant-..." autocomplete="off" autocapitalize="off" spellcheck="false">
+    <label for="model">Model</label>
+    <select id="model">
+      <option value="claude-opus-5-5">Claude Opus 5.5 (best explanations)</option>
+      <option value="claude-sonnet-5-5">Claude Sonnet 5.5 (faster, cheaper)</option>
+      <option value="claude-haiku-5-5">Claude Haiku 5.5 (fastest, cheapest)</option>
+    </select>
+    <label for="lang">Explain in this language</label>
+    <input id="lang" placeholder="English" autocomplete="off">
+    <div class="row">
+      <button class="btn" type="button" id="settings-cancel">Cancel</button>
+      <button class="btn primary" type="submit">Save</button>
+    </div>
+    <button class="btn quiet wide" type="button" id="reset-progress">Reset all progress</button>
+  </form>
+</dialog>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

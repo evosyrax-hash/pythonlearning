@@ -1,0 +1,326 @@
+[
+ {
+  "id": "hello",
+  "topic": "Basics",
+  "title": "Hello, Python!",
+  "text": "`print()` shows text on the screen. Text goes inside quotes.\n\nPrint exactly: `Hello, Python!`",
+  "starter": "# Write your code below\n",
+  "tests": "assert OUTPUT.strip() == \"Hello, Python!\", f\"Expected Hello, Python! but your program printed: {OUTPUT.strip()!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "variables",
+  "topic": "Basics",
+  "title": "Variables and f-strings",
+  "text": "A variable stores a value: `city = \"Tashkent\"`.\nAn f-string puts variables inside text: `f\"I live in {city}\"`.\n\nCreate `name` with the value `\"Ali\"` and `age` with the value `20`.\nThen print: `Ali is 20 years old`",
+  "starter": "name =\nage =\n",
+  "tests": "assert name == \"Ali\", 'name should be \"Ali\"'\nassert age == 20, \"age should be the number 20 (no quotes)\"\nassert OUTPUT.strip() == \"Ali is 20 years old\", f\"Expected: Ali is 20 years old - got: {OUTPUT.strip()!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "arithmetic",
+  "topic": "Basics",
+  "title": "Arithmetic",
+  "text": "Python does math with `+`, `-`, `*`, `/`.\n\nA rectangle has `width = 7` and `height = 4`.\nStore its area in `area` and its perimeter in `perimeter`.",
+  "starter": "width = 7\nheight = 4\n\narea =\nperimeter =\nprint(area, perimeter)\n",
+  "tests": "assert area == 28, f\"area should be 28, got {area}\"\nassert perimeter == 22, f\"perimeter should be 22, got {perimeter}\"",
+  "stdin": ""
+ },
+ {
+  "id": "convert",
+  "topic": "Basics",
+  "title": "Converting types",
+  "text": "Text that looks like a number is still text. `float(\"2.5\")` and `int(\"3\")` turn text into numbers.\n\nConvert the two strings to numbers and store the total cost (price x quantity) in `total`.",
+  "starter": "price_text = \"19.99\"\nquantity_text = \"3\"\n\ntotal =\nprint(total)\n",
+  "tests": "assert isinstance(total, float), \"total should be a number (float), not text\"\nassert abs(total - 59.97) < 1e-6, f\"total should be 59.97, got {total}\"",
+  "stdin": ""
+ },
+ {
+  "id": "input",
+  "topic": "Basics",
+  "title": "Reading input",
+  "text": "`input()` reads one line the user types and gives it back as text.\n\nRead a name with `input()` and print `Hello, <name>!`\n\nWhen you press Run, the app types `Sara` for you, so the result should be `Hello, Sara!`",
+  "starter": "name = input(\"Your name: \")\n",
+  "tests": "assert \"Hello, Sara!\" in OUTPUT, f\"Expected to see Hello, Sara! - your program printed: {OUTPUT!r}\"",
+  "stdin": "Sara"
+ },
+ {
+  "id": "string-methods",
+  "topic": "Strings",
+  "title": "String methods",
+  "text": "Strings have built-in tools: `.strip()` removes spaces at both ends, `.lower()`, `.upper()`, `.title()` change the case.\n\nClean up `text` so that `cleaned` is `\"Python Is Fun\"`.",
+  "starter": "text = \"   python is FUN  \"\n\ncleaned =\nprint(cleaned)\n",
+  "tests": "assert cleaned == \"Python Is Fun\", f'cleaned should be \"Python Is Fun\", got {cleaned!r}'",
+  "stdin": ""
+ },
+ {
+  "id": "slicing",
+  "topic": "Strings",
+  "title": "Slicing",
+  "text": "`word[0]` is the first letter. `word[a:b]` takes a slice from position a up to (not including) b. Negative numbers count from the end, and `word[::-1]` reverses.\n\nFrom `word`, make:\n- `first3` - the first three letters\n- `last3` - the last three letters\n- `backwards` - the whole word reversed",
+  "starter": "word = \"programming\"\n\nfirst3 =\nlast3 =\nbackwards =\nprint(first3, last3, backwards)\n",
+  "tests": "assert first3 == \"pro\", f'first3 should be \"pro\", got {first3!r}'\nassert last3 == \"ing\", f'last3 should be \"ing\", got {last3!r}'\nassert backwards == \"gnimmargorp\", f'backwards should be \"gnimmargorp\", got {backwards!r}'",
+  "stdin": ""
+ },
+ {
+  "id": "count-vowels",
+  "topic": "Strings",
+  "title": "Count the vowels",
+  "text": "You can loop over a string letter by letter: `for ch in text:`. Use `in` to test membership: `ch in \"aeiou\"`.\n\nWrite `count_vowels(text)` that returns how many vowels (a, e, i, o, u) are in the text. Upper and lower case both count.",
+  "starter": "def count_vowels(text):\n\n\nprint(count_vowels(\"Hello World\"))\n",
+  "tests": "assert count_vowels(\"Hello World\") == 3, f'count_vowels(\"Hello World\") should be 3, got {count_vowels(\"Hello World\")!r}'\nassert count_vowels(\"AEIOU\") == 5, \"Upper-case vowels should count too\"\nassert count_vowels(\"rhythm\") == 0, 'count_vowels(\"rhythm\") should be 0'\nassert count_vowels(\"\") == 0, \"An empty string has 0 vowels\"",
+  "stdin": ""
+ },
+ {
+  "id": "is-even",
+  "topic": "Conditions",
+  "title": "Even or odd",
+  "text": "`%` gives the remainder of a division: `7 % 2` is `1`. Comparisons like `==` give `True` or `False`.\n\nWrite `is_even(n)` that returns `True` when n is even and `False` otherwise.",
+  "starter": "def is_even(n):\n\n\nprint(is_even(4), is_even(7))\n",
+  "tests": "assert is_even(4) is True, \"is_even(4) should be True\"\nassert is_even(7) is False, \"is_even(7) should be False\"\nassert is_even(0) is True, \"is_even(0) should be True\"\nassert is_even(-3) is False, \"is_even(-3) should be False\"",
+  "stdin": ""
+ },
+ {
+  "id": "grade",
+  "topic": "Conditions",
+  "title": "Letter grades",
+  "text": "`if` / `elif` / `else` picks one branch. Conditions are checked top to bottom and the first true one wins.\n\nWrite `grade(score)`:\n- 90 or more returns `\"A\"`\n- 80 or more returns `\"B\"`\n- 70 or more returns `\"C\"`\n- anything lower returns `\"F\"`",
+  "starter": "def grade(score):\n\n\nprint(grade(85))\n",
+  "tests": "for score, want in [(95, \"A\"), (90, \"A\"), (89, \"B\"), (80, \"B\"), (75, \"C\"), (70, \"C\"), (69, \"F\"), (0, \"F\")]:\n    got = grade(score)\n    assert got == want, f\"grade({score}) should be {want!r}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "leap-year",
+  "topic": "Conditions",
+  "title": "Leap years",
+  "text": "Combine conditions with `and`, `or`, `not`.\n\nA year is a leap year if it divides by 4, except years that divide by 100 - unless they also divide by 400.\nSo 2024 and 2000 are leap years; 1900 and 2023 are not.\n\nWrite `is_leap(year)` that returns `True` or `False`.",
+  "starter": "def is_leap(year):\n\n\nprint(is_leap(2024))\n",
+  "tests": "for year, want in [(2024, True), (2023, False), (1900, False), (2000, True), (2100, False), (1996, True)]:\n    got = is_leap(year)\n    assert got == want, f\"is_leap({year}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "sum-loop",
+  "topic": "Loops",
+  "title": "Sum with a for loop",
+  "text": "`range(1, 6)` gives 1, 2, 3, 4, 5 - the end number is not included.\n\nUse a `for` loop to add up all the numbers from 1 to 100 and store the result in `total`.",
+  "starter": "total = 0\n\nprint(total)\n",
+  "tests": "assert total == 5050, f\"total should be 5050, got {total}\"",
+  "stdin": ""
+ },
+ {
+  "id": "fizzbuzz",
+  "topic": "Loops",
+  "title": "FizzBuzz",
+  "text": "The classic. Print the numbers from 1 to 15, one per line, but:\n- for multiples of 3 print `Fizz`\n- for multiples of 5 print `Buzz`\n- for multiples of both print `FizzBuzz`\n\nTip: check the \"both\" case first.",
+  "starter": "for n in range(1, 16):\n",
+  "tests": "want = [\"1\", \"2\", \"Fizz\", \"4\", \"Buzz\", \"Fizz\", \"7\", \"8\", \"Fizz\", \"Buzz\", \"11\", \"Fizz\", \"13\", \"14\", \"FizzBuzz\"]\ngot = OUTPUT.split()\nassert len(got) == 15, f\"Expected 15 lines, your program printed {len(got)}\"\nfor i, (g, w) in enumerate(zip(got, want), start=1):\n    assert g == w, f\"Line {i} should be {w}, got {g}\"",
+  "stdin": ""
+ },
+ {
+  "id": "countdown",
+  "topic": "Loops",
+  "title": "While loop countdown",
+  "text": "A `while` loop repeats as long as its condition is true. Something inside the loop must change, or it never stops.\n\nPrint 5, 4, 3, 2, 1 (one per line) using a `while` loop, then print `Liftoff!`",
+  "starter": "n = 5\n",
+  "tests": "assert OUTPUT.split() == [\"5\", \"4\", \"3\", \"2\", \"1\", \"Liftoff!\"], f\"Expected 5 4 3 2 1 Liftoff! on separate lines - got: {OUTPUT.split()}\"",
+  "stdin": ""
+ },
+ {
+  "id": "factorial",
+  "topic": "Loops",
+  "title": "Factorial",
+  "text": "5! (five factorial) is 5 x 4 x 3 x 2 x 1 = 120. By definition 0! is 1.\n\nWrite `factorial(n)` using a loop. Start a result at 1 and multiply it by each number up to n.",
+  "starter": "def factorial(n):\n\n\nprint(factorial(5))\n",
+  "tests": "for n, want in [(0, 1), (1, 1), (5, 120), (10, 3628800)]:\n    got = factorial(n)\n    assert got == want, f\"factorial({n}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "list-stats",
+  "topic": "Lists",
+  "title": "List basics",
+  "text": "A list holds many values: `nums = [3, 1, 2]`. Useful built-ins: `len()`, `sum()`, `min()`, `max()`.\n\nFor `numbers`, store the largest value in `biggest`, the smallest in `smallest`, and the average in `average`.",
+  "starter": "numbers = [4, 8, 15, 16, 23, 42]\n\nbiggest =\nsmallest =\naverage =\nprint(biggest, smallest, average)\n",
+  "tests": "assert biggest == 42, f\"biggest should be 42, got {biggest!r}\"\nassert smallest == 4, f\"smallest should be 4, got {smallest!r}\"\nassert average == 18, f\"average should be 18.0, got {average!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "evens-only",
+  "topic": "Lists",
+  "title": "Filter a list",
+  "text": "Start with an empty list `result = []` and add items with `result.append(x)`.\n\nWrite `evens_only(nums)` that returns a new list with only the even numbers, in the same order.",
+  "starter": "def evens_only(nums):\n\n\nprint(evens_only([1, 2, 3, 4, 5, 6]))\n",
+  "tests": "assert evens_only([1, 2, 3, 4, 5, 6]) == [2, 4, 6], f\"evens_only([1, 2, 3, 4, 5, 6]) should be [2, 4, 6], got {evens_only([1, 2, 3, 4, 5, 6])!r}\"\nassert evens_only([1, 3, 5]) == [], \"With no even numbers the result should be an empty list []\"\nassert evens_only([]) == [], \"An empty list should give an empty list\"\nassert evens_only([0, -2, 7]) == [0, -2], \"0 and negative even numbers count as even\"",
+  "stdin": ""
+ },
+ {
+  "id": "reverse-list",
+  "topic": "Lists",
+  "title": "Reverse a list",
+  "text": "Write `reverse_list(items)` that returns a new list with the items in reverse order.\n\nThe original list must not be changed. (So `items.reverse()` alone is not enough - it changes the original.)",
+  "starter": "def reverse_list(items):\n\n\nprint(reverse_list([1, 2, 3]))\n",
+  "tests": "original = [1, 2, 3]\ngot = reverse_list(original)\nassert got == [3, 2, 1], f\"reverse_list([1, 2, 3]) should be [3, 2, 1], got {got!r}\"\nassert original == [1, 2, 3], \"The original list was changed - return a new list instead\"\nassert reverse_list([]) == [], \"An empty list reversed is an empty list\"\nassert reverse_list([\"a\", \"b\"]) == [\"b\", \"a\"], \"It should work for text items too\"",
+  "stdin": ""
+ },
+ {
+  "id": "second-largest",
+  "topic": "Lists",
+  "title": "Second largest",
+  "text": "Write `second_largest(nums)` that returns the second largest different value in the list.\n\nFor `[5, 1, 9, 9, 7]` the answer is `7` - the two 9s are the same value.\nYou can assume the list has at least two different numbers.",
+  "starter": "def second_largest(nums):\n\n\nprint(second_largest([5, 1, 9, 9, 7]))\n",
+  "tests": "for nums, want in [([5, 1, 9, 9, 7], 7), ([1, 2], 1), ([3, 3, 2, 2, 1], 2), ([-5, -1, -3], -3)]:\n    got = second_largest(list(nums))\n    assert got == want, f\"second_largest({nums}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "greet",
+  "topic": "Functions",
+  "title": "Default arguments",
+  "text": "A parameter can have a default value: `def power(x, n=2):`. If the caller leaves it out, the default is used.\n\nWrite `greet(name, greeting=\"Hello\")` that returns text like `Hello, Ali!`\nSo `greet(\"Ali\", \"Salom\")` returns `Salom, Ali!`",
+  "starter": "def greet():\n\n\nprint(greet(\"Ali\"))\nprint(greet(\"Ali\", \"Salom\"))\n",
+  "tests": "assert greet(\"Ali\") == \"Hello, Ali!\", f'greet(\"Ali\") should return \"Hello, Ali!\", got {greet(\"Ali\")!r}'\nassert greet(\"Ali\", \"Salom\") == \"Salom, Ali!\", f'greet(\"Ali\", \"Salom\") should return \"Salom, Ali!\", got {greet(\"Ali\", \"Salom\")!r}'",
+  "stdin": ""
+ },
+ {
+  "id": "palindrome",
+  "topic": "Functions",
+  "title": "Palindromes",
+  "text": "A palindrome reads the same forwards and backwards, like \"level\".\n\nWrite `is_palindrome(text)` that returns `True` or `False`. Ignore upper/lower case and ignore spaces, so `\"Never odd or even\"` is a palindrome.",
+  "starter": "def is_palindrome(text):\n\n\nprint(is_palindrome(\"Never odd or even\"))\n",
+  "tests": "for text, want in [(\"level\", True), (\"Level\", True), (\"Never odd or even\", True), (\"python\", False), (\"\", True), (\"ab\", False)]:\n    got = is_palindrome(text)\n    assert got == want, f\"is_palindrome({text!r}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "fibonacci",
+  "topic": "Functions",
+  "title": "Fibonacci",
+  "text": "The Fibonacci sequence starts 0, 1 and each next number is the sum of the two before it: 0, 1, 1, 2, 3, 5, 8, ...\n\nWrite `fibonacci(n)` that returns a list with the first n Fibonacci numbers.\n`fibonacci(6)` returns `[0, 1, 1, 2, 3, 5]`.",
+  "starter": "def fibonacci(n):\n\n\nprint(fibonacci(6))\n",
+  "tests": "for n, want in [(0, []), (1, [0]), (2, [0, 1]), (6, [0, 1, 1, 2, 3, 5]), (10, [0, 1, 1, 2, 3, 5, 8, 13, 21, 34])]:\n    got = fibonacci(n)\n    assert got == want, f\"fibonacci({n}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "dict-basics",
+  "topic": "Dictionaries",
+  "title": "Dictionary basics",
+  "text": "A dictionary maps keys to values: `d = {\"a\": 1}`. Read with `d[\"a\"]`, add or change with `d[\"b\"] = 2`.\n\n1. Create `student` with `\"name\"` set to `\"Malika\"` and `\"age\"` set to `19`.\n2. Then add a new key `\"city\"` with the value `\"Samarkand\"`.\n3. Then increase the age by 1.",
+  "starter": "student =\n\nprint(student)\n",
+  "tests": "assert isinstance(student, dict), \"student should be a dictionary\"\nassert student.get(\"name\") == \"Malika\", 'student[\"name\"] should be \"Malika\"'\nassert student.get(\"city\") == \"Samarkand\", 'student[\"city\"] should be \"Samarkand\"'\nassert student.get(\"age\") == 20, f'student[\"age\"] should be 20 after adding 1, got {student.get(\"age\")!r}'",
+  "stdin": ""
+ },
+ {
+  "id": "word-count",
+  "topic": "Dictionaries",
+  "title": "Count words",
+  "text": "`sentence.split()` breaks text into a list of words. `d.get(key, 0)` reads a value, or gives 0 when the key is missing.\n\nWrite `word_count(sentence)` that returns a dictionary of how many times each word appears. Treat upper and lower case as the same word (use lower case keys).",
+  "starter": "def word_count(sentence):\n\n\nprint(word_count(\"the cat and the hat\"))\n",
+  "tests": "got = word_count(\"the cat and the hat\")\nassert got == {\"the\": 2, \"cat\": 1, \"and\": 1, \"hat\": 1}, f\"Wrong counts for 'the cat and the hat': {got!r}\"\ngot = word_count(\"Go go GO\")\nassert got == {\"go\": 3}, f\"'Go go GO' should give {{'go': 3}}, got {got!r}\"\nassert word_count(\"\") == {}, \"An empty sentence should give an empty dictionary\"",
+  "stdin": ""
+ },
+ {
+  "id": "most-expensive",
+  "topic": "Dictionaries",
+  "title": "Loop over a dictionary",
+  "text": "`for key, value in d.items():` walks through every pair.\n\nWrite `most_expensive(prices)` that takes a dictionary of item names and prices and returns the name of the most expensive item.",
+  "starter": "def most_expensive(prices):\n\n\nprint(most_expensive({\"tea\": 3, \"plov\": 12, \"bread\": 2}))\n",
+  "tests": "got = most_expensive({\"tea\": 3, \"plov\": 12, \"bread\": 2})\nassert got == \"plov\", f'Expected \"plov\", got {got!r}'\ngot = most_expensive({\"a\": 1})\nassert got == \"a\", f'With one item it should return that item, got {got!r}'\ngot = most_expensive({\"x\": -5, \"y\": -2})\nassert got == \"y\", f'It should work with negative prices too, got {got!r}'",
+  "stdin": ""
+ },
+ {
+  "id": "unique-sorted",
+  "topic": "Tuples & sets",
+  "title": "Remove duplicates",
+  "text": "A `set` keeps only unique values: `set([1, 1, 2])` is `{1, 2}`. `sorted()` returns a sorted list from any collection.\n\nWrite `unique_sorted(nums)` that returns a sorted list with duplicates removed.",
+  "starter": "def unique_sorted(nums):\n\n\nprint(unique_sorted([3, 1, 3, 2, 1]))\n",
+  "tests": "got = unique_sorted([3, 1, 3, 2, 1])\nassert got == [1, 2, 3], f\"unique_sorted([3, 1, 3, 2, 1]) should be [1, 2, 3], got {got!r}\"\nassert isinstance(got, list), \"Return a list, not a set\"\nassert unique_sorted([]) == [], \"An empty list should give an empty list\"",
+  "stdin": ""
+ },
+ {
+  "id": "min-max",
+  "topic": "Tuples & sets",
+  "title": "Return two values",
+  "text": "A function can return several values at once as a tuple: `return a, b`. The caller can unpack them: `low, high = f()`.\n\nWrite `min_max(nums)` that returns the smallest and the largest number as a tuple `(smallest, largest)`.",
+  "starter": "def min_max(nums):\n\n\nlow, high = min_max([4, 9, 2, 7])\nprint(low, high)\n",
+  "tests": "got = min_max([4, 9, 2, 7])\nassert tuple(got) == (2, 9), f\"min_max([4, 9, 2, 7]) should be (2, 9), got {got!r}\"\nassert tuple(min_max([5])) == (5, 5), \"With one number, both values are that number\"",
+  "stdin": ""
+ },
+ {
+  "id": "squares",
+  "topic": "Comprehensions",
+  "title": "List comprehension",
+  "text": "A list comprehension builds a list in one line: `[n * 2 for n in range(5)]` gives `[0, 2, 4, 6, 8]`.\n\nUse one to make `squares`: the squares of the numbers 1 to 10.",
+  "starter": "squares =\nprint(squares)\n",
+  "tests": "assert squares == [1, 4, 9, 16, 25, 36, 49, 64, 81, 100], f\"squares should be [1, 4, 9, ..., 100], got {squares!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "long-words",
+  "topic": "Comprehensions",
+  "title": "Comprehension with a filter",
+  "text": "Add an `if` at the end to keep only some items: `[x for x in items if x > 0]`.\n\nWrite `long_words(words, n)` that returns the words longer than n letters, in upper case.",
+  "starter": "def long_words(words, n):\n\n\nprint(long_words([\"sun\", \"planet\", \"moon\", \"galaxy\"], 4))\n",
+  "tests": "got = long_words([\"sun\", \"planet\", \"moon\", \"galaxy\"], 4)\nassert got == [\"PLANET\", \"GALAXY\"], f'Expected [\"PLANET\", \"GALAXY\"], got {got!r}'\nassert long_words([\"a\", \"bb\"], 5) == [], \"When no word is long enough, return an empty list\"\nassert long_words([\"abc\"], 2) == [\"ABC\"], 'long_words([\"abc\"], 2) should be [\"ABC\"]'",
+  "stdin": ""
+ },
+ {
+  "id": "safe-divide",
+  "topic": "Errors",
+  "title": "try / except",
+  "text": "Dividing by zero raises `ZeroDivisionError` and stops the program. `try:` / `except ZeroDivisionError:` lets you catch it and carry on.\n\nWrite `safe_divide(a, b)` that returns `a / b`, or `None` when b is zero. Use try/except.",
+  "starter": "def safe_divide(a, b):\n\n\nprint(safe_divide(10, 2))\nprint(safe_divide(1, 0))\n",
+  "tests": "assert safe_divide(10, 2) == 5, f\"safe_divide(10, 2) should be 5.0, got {safe_divide(10, 2)!r}\"\nassert safe_divide(1, 0) is None, f\"safe_divide(1, 0) should be None, got {safe_divide(1, 0)!r}\"\nassert safe_divide(0, 5) == 0, \"safe_divide(0, 5) should be 0.0\"",
+  "stdin": ""
+ },
+ {
+  "id": "to-int",
+  "topic": "Errors",
+  "title": "Catching bad input",
+  "text": "`int(\"abc\")` raises `ValueError`.\n\nWrite `to_int(text, default=0)` that returns the text converted to an integer, or `default` when the text is not a valid whole number.",
+  "starter": "def to_int(text, default=0):\n\n\nprint(to_int(\"42\"), to_int(\"abc\"), to_int(\"x\", -1))\n",
+  "tests": "assert to_int(\"42\") == 42, f'to_int(\"42\") should be 42, got {to_int(\"42\")!r}'\nassert to_int(\"abc\") == 0, f'to_int(\"abc\") should be 0, got {to_int(\"abc\")!r}'\nassert to_int(\"x\", -1) == -1, 'to_int(\"x\", -1) should return the default, -1'\nassert to_int(\" 7 \") == 7, 'to_int(\" 7 \") should be 7'",
+  "stdin": ""
+ },
+ {
+  "id": "dog-class",
+  "topic": "Classes",
+  "title": "Your first class",
+  "text": "A class bundles data and functions. `__init__` runs when you create an object, and `self` is the object itself.\n\nWrite a class `Dog`:\n- `Dog(\"Rex\")` stores the name in `self.name`\n- `.bark()` returns the text `Rex says Woof!` (with that dog's name)",
+  "starter": "class Dog:\n    def __init__(self, name):\n\n\nrex = Dog(\"Rex\")\nprint(rex.bark())\n",
+  "tests": "d = Dog(\"Rex\")\nassert d.name == \"Rex\", \"Dog('Rex').name should be 'Rex'\"\nassert d.bark() == \"Rex says Woof!\", f'bark() should return \"Rex says Woof!\", got {d.bark()!r}'\nassert Dog(\"Bobik\").bark() == \"Bobik says Woof!\", \"bark() should use each dog's own name\"",
+  "stdin": ""
+ },
+ {
+  "id": "bank-account",
+  "topic": "Classes",
+  "title": "Bank account",
+  "text": "`raise ValueError(\"message\")` signals an error on purpose.\n\nWrite a class `BankAccount`:\n- starts with `balance` of 0\n- `.deposit(amount)` adds to the balance\n- `.withdraw(amount)` subtracts from the balance, but raises `ValueError` if the amount is more than the balance",
+  "starter": "class BankAccount:\n\n\nacc = BankAccount()\nacc.deposit(100)\nacc.withdraw(30)\nprint(acc.balance)\n",
+  "tests": "a = BankAccount()\nassert a.balance == 0, \"A new account should have balance 0\"\na.deposit(100)\nassert a.balance == 100, f\"After deposit(100) balance should be 100, got {a.balance!r}\"\na.withdraw(30)\nassert a.balance == 70, f\"After withdraw(30) balance should be 70, got {a.balance!r}\"\ntry:\n    a.withdraw(500)\nexcept ValueError:\n    pass\nelse:\n    raise AssertionError(\"withdraw(500) with only 70 in the account should raise ValueError\")\nassert a.balance == 70, \"A failed withdrawal must not change the balance\"\nb = BankAccount()\nassert b.balance == 0, \"Each account needs its own balance - set it in __init__ with self.balance\"",
+  "stdin": ""
+ },
+ {
+  "id": "is-prime",
+  "topic": "Challenges",
+  "title": "Prime numbers",
+  "text": "A prime number is greater than 1 and divides evenly only by 1 and itself: 2, 3, 5, 7, 11, ...\n\nWrite `is_prime(n)` that returns `True` or `False`.",
+  "starter": "def is_prime(n):\n\n\nprint([n for n in range(20) if is_prime(n)])\n",
+  "tests": "primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47]\nfor n in range(-2, 50):\n    got = is_prime(n)\n    want = n in primes\n    assert got == want, f\"is_prime({n}) should be {want}, got {got!r}\"\nassert is_prime(7919) is True, \"is_prime(7919) should be True\"",
+  "stdin": ""
+ },
+ {
+  "id": "anagrams",
+  "topic": "Challenges",
+  "title": "Anagrams",
+  "text": "Two words are anagrams when they use exactly the same letters, like \"listen\" and \"silent\".\n\nWrite `are_anagrams(a, b)` that returns `True` or `False`. Ignore upper/lower case and spaces.",
+  "starter": "def are_anagrams(a, b):\n\n\nprint(are_anagrams(\"listen\", \"silent\"))\n",
+  "tests": "for a, b, want in [(\"listen\", \"silent\", True), (\"Listen\", \"Silent\", True), (\"dormitory\", \"dirty room\", True),\n                   (\"hello\", \"world\", False), (\"aab\", \"abb\", False), (\"abc\", \"abcd\", False)]:\n    got = are_anagrams(a, b)\n    assert got == want, f\"are_anagrams({a!r}, {b!r}) should be {want}, got {got!r}\"",
+  "stdin": ""
+ },
+ {
+  "id": "caesar",
+  "topic": "Challenges",
+  "title": "Caesar cipher",
+  "text": "A Caesar cipher shifts every letter forward in the alphabet. With a shift of 3, `a` becomes `d` and `z` wraps around to `c`.\n\n`ord(\"a\")` gives a letter's number and `chr(number)` turns it back into a letter.\n\nWrite `caesar(text, shift)` that shifts lower-case letters a-z and leaves every other character unchanged.\n`caesar(\"hello, world\", 3)` returns `khoor, zruog`.",
+  "starter": "def caesar(text, shift):\n\n\nprint(caesar(\"hello, world\", 3))\n",
+  "tests": "assert caesar(\"abc\", 1) == \"bcd\", f'caesar(\"abc\", 1) should be \"bcd\", got {caesar(\"abc\", 1)!r}'\nassert caesar(\"xyz\", 3) == \"abc\", f'caesar(\"xyz\", 3) should wrap around to \"abc\", got {caesar(\"xyz\", 3)!r}'\nassert caesar(\"hello, world\", 3) == \"khoor, zruog\", f'caesar(\"hello, world\", 3) should be \"khoor, zruog\", got {caesar(\"hello, world\", 3)!r}'\nassert caesar(caesar(\"python\", 5), -5) == \"python\", \"Shifting by 5 and then by -5 should give back the original text\"",
+  "stdin": ""
+ }
+]
